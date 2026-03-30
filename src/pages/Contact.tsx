@@ -124,7 +124,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-3">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-foreground mb-3">
               Get In <span className="gradient-text">Touch</span>
             </h1>
             <p className="text-muted-foreground max-w-md mx-auto">
@@ -269,7 +269,7 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={submitting}
-                  className="btn-liquid w-full px-8 py-4 rounded-xl font-display font-bold text-primary-foreground text-sm disabled:opacity-60"
+                  className="btn-liquid w-full px-8 py-4 rounded-xl font-body font-bold text-white text-sm disabled:opacity-60"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

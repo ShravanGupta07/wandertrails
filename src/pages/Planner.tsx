@@ -207,7 +207,7 @@ const Planner = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            <div className="grid sm:grid-cols-[1fr_auto_auto] gap-4 items-end">
+            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-4 items-end">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
                   <MapPin size={14} className="text-primary" />
@@ -280,7 +280,7 @@ const Planner = () => {
               <motion.button
                 onClick={generate}
                 disabled={!selectedDest || (selectedDest === 'custom' && !customDestPrompt) || isGenerating}
-                className="btn-liquid px-8 py-3 rounded-xl font-display font-bold text-primary-foreground text-sm disabled:opacity-40 disabled:pointer-events-none"
+                className="btn-liquid w-full sm:w-auto px-8 py-3 rounded-xl font-body font-bold text-white text-sm disabled:opacity-40 disabled:pointer-events-none"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -324,7 +324,7 @@ const Planner = () => {
                 </div>
 
                 {/* Lines */}
-                <div id="itinerary-content" className="p-5 max-h-[500px] overflow-y-auto text-sm leading-relaxed">
+                <div id="itinerary-content" className="p-4 md:p-5 max-h-[500px] overflow-y-auto text-xs md:text-sm leading-relaxed scrollbar-hide">
                   {displayedLines.map((line, i) => (
                     <motion.div
                       key={i}

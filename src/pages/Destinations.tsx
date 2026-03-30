@@ -55,7 +55,7 @@ const Destinations = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-8xl font-display font-bold text-foreground mb-4 max-w-5xl tracking-tighter leading-[1.1]">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-foreground mb-4 max-w-5xl tracking-tighter leading-[1.1]">
               Discover Your Life, <br />
               <span className="gradient-text">Travel Where You Want</span>
             </h1>
@@ -86,21 +86,23 @@ const Destinations = () => {
                 className="bg-transparent text-foreground text-sm placeholder:text-muted-foreground w-full focus:outline-none"
               />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3 w-full overflow-hidden">
               <SlidersHorizontal size={16} className="text-muted-foreground shrink-0" />
-              {difficultyFilters.map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setDifficulty(f)}
-                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
-                    difficulty === f
-                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                      : "bg-muted/50 text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
+              <div className="flex gap-2 min-w-0 overflow-x-auto scrollbar-hide py-1 px-1">
+                {difficultyFilters.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setDifficulty(f)}
+                    className={`px-5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
+                      difficulty === f
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                        : "bg-muted/50 text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
 

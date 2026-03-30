@@ -49,15 +49,15 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-4 h-auto"
           >
-            <Shuffle text="W" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
+            <Shuffle text="W" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
             <motion.div whileHover={{ rotate: 15 }} className="text-primary self-center">
               <Compass size={64} className="w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20" />
             </motion.div>
-            <Shuffle text="nd" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
+            <Shuffle text="nd" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
             <motion.div whileHover={{ scale: 1.1 }} className="text-primary self-center">
               <Mountain size={64} className="w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20" />
             </motion.div>
-            <Shuffle text="r" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
+            <Shuffle text="r" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
           </motion.div>
 
           <motion.div 
@@ -66,16 +66,16 @@ const HeroSection = () => {
             transition={{ delay: 0.1 }}
             className="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-4 -mt-2 sm:-mt-6"
           >
-            <Shuffle text="T" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter text-primary" />
-            <Shuffle text="r" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
+            <Shuffle text="T" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter text-primary" />
+            <Shuffle text="r" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
             <motion.div whileHover={{ y: -5 }} className="text-primary self-center">
                <MapPin size={64} className="w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20" />
             </motion.div>
-            <Shuffle text="i" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-serif italic text-primary" />
+            <Shuffle text="i" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-serif italic text-primary" />
             <motion.div whileHover={{ rotate: -10 }} className="text-primary self-center">
                <Trees size={64} className="w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20" />
             </motion.div>
-            <Shuffle text="ls" {...shuffleProps} className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
+            <Shuffle text="ls" {...shuffleProps} className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter" />
           </motion.div>
         </div>
 
@@ -124,10 +124,10 @@ const HeroSection = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-20 flex flex-wrap gap-6 justify-center">
-            <Link to="/planner">
+        <div className="mt-20 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto px-4 sm:px-0">
+            <Link to="/planner" className="w-full sm:w-auto">
               <motion.span
-                className="btn-liquid inline-flex items-center justify-center gap-2 h-16 min-w-[220px] px-10 rounded-2xl font-body font-semibold tracking-wider text-white text-sm cursor-pointer shadow-lg shadow-primary/20"
+                className="btn-liquid inline-flex items-center justify-center gap-2 h-16 w-full sm:min-w-[220px] px-10 rounded-2xl font-body font-semibold tracking-wider text-white text-sm cursor-pointer shadow-lg shadow-primary/20"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -135,9 +135,9 @@ const HeroSection = () => {
                 <ArrowRight size={20} />
               </motion.span>
             </Link>
-            <Link to="/destinations">
+            <Link to="/destinations" className="w-full sm:w-auto">
               <motion.span
-                className="glass inline-flex items-center justify-center h-16 min-w-[220px] px-10 rounded-2xl font-body font-semibold tracking-wider text-foreground text-sm cursor-pointer border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all"
+                className="glass inline-flex items-center justify-center h-16 w-full sm:min-w-[220px] px-10 rounded-2xl font-body font-semibold tracking-wider text-foreground text-sm cursor-pointer border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
