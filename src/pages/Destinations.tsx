@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Search, SlidersHorizontal } from "lucide-react";
 import SiteNavbar from "@/components/SiteNavbar";
@@ -13,6 +13,19 @@ const difficultyFilters = ["All", "Easy", "Moderate", "Challenging"] as const;
 const Destinations = () => {
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState<string>("All");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const filtered = useMemo(() => {
     return destinations.filter((d) => {
@@ -76,7 +89,8 @@ const Destinations = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            <div className="flex items-center gap-3 flex-[2] bg-muted/40 rounded-2xl px-4 py-3 border border-white/5 focus-within:border-primary/30 transition-all">
+            {/* Search input */}
+            <div className="flex items-center gap-3 flex-1 bg-muted/40 rounded-2xl px-4 py-3 border border-white/5 focus-within:border-primary/30 transition-all">
               <Search size={20} className="text-muted-foreground shrink-0" />
               <input
                 type="text"
@@ -87,23 +101,42 @@ const Destinations = () => {
               />
             </div>
 
-            <div className="flex items-center gap-3 sm:w-auto flex-1 overflow-hidden bg-muted/40 rounded-2xl px-4 py-3 border border-white/5">
-              <SlidersHorizontal size={18} className="text-muted-foreground shrink-0" />
-              <div className="flex gap-2 min-w-0 overflow-x-auto scrollbar-hide">
-                {difficultyFilters.map((f) => (
-                  <button
-                    key={f}
-                    onClick={() => setDifficulty(f)}
-                    className={`px-4 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
-                      difficulty === f
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                        : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    {f}
-                  </button>
-                ))}
-              </div>
+            {/* Filter dropdown button */}
+            <div className="relative shrink-0" ref={filterRef}>
+              <button
+                onClick={() => setFilterOpen((o) => !o)}
+                className={`flex items-center gap-2 px-4 py-3 rounded-2xl border transition-all ${
+                  filterOpen
+                    ? "bg-primary text-primary-foreground border-primary/50 shadow-lg shadow-primary/20"
+                    : difficulty !== "All"
+                    ? "bg-primary/15 text-primary border-primary/30"
+                    : "bg-muted/40 text-muted-foreground border-white/5 hover:text-foreground hover:border-white/10"
+                }`}
+              >
+                <SlidersHorizontal size={18} className="shrink-0" />
+                {difficulty !== "All" && (
+                  <span className="text-xs font-semibold">{difficulty}</span>
+                )}
+              </button>
+
+              {/* Dropdown panel */}
+              {filterOpen && (
+                <div className="absolute right-0 top-full mt-2 glass-card rounded-2xl p-2 flex flex-col gap-1 z-50 min-w-[160px] shadow-xl">
+                  {difficultyFilters.map((f) => (
+                    <button
+                      key={f}
+                      onClick={() => { setDifficulty(f); setFilterOpen(false); }}
+                      className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        difficulty === f
+                          ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      {f}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
 
