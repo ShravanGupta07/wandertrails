@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark futuristic theme — deep indigo/charcoal */
+    --background: 230 25% 7%;
+    --foreground: 210 20% 92%;
+
+    --card: 230 20% 11%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 230 20% 11%;
+    --popover-foreground: 210 20% 92%;
+
+    /* Electric Teal accent */
+    --primary: 174 85% 48%;
+    --primary-foreground: 230 25% 7%;
+
+    /* Sunset Orange accent */
+    --secondary: 24 95% 58%;
+    --secondary-foreground: 230 25% 7%;
+
+    --muted: 230 18% 16%;
+    --muted-foreground: 220 12% 55%;
+
+    --accent: 174 85% 48%;
+    --accent-foreground: 230 25% 7%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 18%;
+    --input: 230 15% 18%;
+    --ring: 174 85% 48%;
+
+    --radius: 0.875rem;
+
+    /* Glassmorphism tokens */
+    --glass-bg: 230 20% 14% / 0.6;
+    --glass-border: 0 0% 100% / 0.08;
+    --glass-blur: 20px;
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    /* Glow tokens */
+    --glow-teal: 0 0 30px hsla(174, 85%, 48%, 0.3);
+    --glow-orange: 0 0 30px hsla(24, 95%, 58%, 0.3);
+    --glow-teal-strong: 0 0 60px hsla(174, 85%, 48%, 0.15), 0 0 20px hsla(174, 85%, 48%, 0.3);
+
+    /* Gradient tokens */
+    --gradient-hero: linear-gradient(160deg, hsl(230, 25%, 5%) 0%, hsl(240, 30%, 12%) 40%, hsl(230, 20%, 8%) 100%);
+    --gradient-teal-orange: linear-gradient(135deg, hsl(174, 85%, 48%), hsl(24, 95%, 58%));
+    --gradient-card-glow: linear-gradient(135deg, hsla(174, 85%, 48%, 0.08), hsla(24, 95%, 58%, 0.05));
+
+    /* Font tokens */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    --sidebar-background: 230 20% 11%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 174 85% 48%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 18% 16%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 230 15% 18%;
+    --sidebar-ring: 174 85% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--glass-shadow);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    border-color: hsla(174, 85%, 48%, 0.2);
+    box-shadow: var(--glass-shadow), var(--glow-teal);
+  }
+
+  .glass-nav {
+    background: hsla(230, 25%, 7%, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    background: var(--gradient-teal-orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glowing border animation */
+  .glow-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 0deg, hsla(174, 85%, 48%, 0.4), hsla(24, 95%, 58%, 0.4), hsla(174, 85%, 48%, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: glow-spin 4s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes glow-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Terminal effect */
+  .terminal {
+    background: hsla(230, 30%, 6%, 0.95);
+    border: 1px solid hsla(174, 85%, 48%, 0.25);
+    box-shadow: var(--glow-teal-strong);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Liquid button */
+  .btn-liquid {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .btn-liquid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-teal-orange);
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .btn-liquid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(24, 95%, 58%), hsl(340, 80%, 55%));
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  .btn-liquid:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Cinematic Mask for Marquee */
+  .cinematic-mask {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+}
+
+/* Custom Minimalist Scrollbar */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsla(174, 85%, 48%, 0.1);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(174, 85%, 48%, 0.3);
+    box-shadow: 0 0 10px hsla(174, 85%, 48%, 0.5);
+  }
+}
