@@ -76,8 +76,8 @@ const Destinations = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            <div className="flex items-center gap-3 flex-1 bg-muted/50 rounded-lg px-4 py-2.5">
-              <Search size={18} className="text-muted-foreground shrink-0" />
+            <div className="flex items-center gap-3 flex-[2] bg-muted/40 rounded-2xl px-4 py-3 border border-white/5 focus-within:border-primary/30 transition-all">
+              <Search size={20} className="text-muted-foreground shrink-0" />
               <input
                 type="text"
                 placeholder="Search destinations, states..."
@@ -86,17 +86,18 @@ const Destinations = () => {
                 className="bg-transparent text-foreground text-sm placeholder:text-muted-foreground w-full focus:outline-none"
               />
             </div>
-            <div className="flex items-center gap-3 w-full overflow-hidden">
-              <SlidersHorizontal size={16} className="text-muted-foreground shrink-0" />
-              <div className="flex gap-2 min-w-0 overflow-x-auto scrollbar-hide py-1 px-1">
+
+            <div className="flex items-center gap-3 sm:w-auto flex-1 overflow-hidden bg-muted/40 rounded-2xl px-4 py-3 border border-white/5">
+              <SlidersHorizontal size={18} className="text-muted-foreground shrink-0" />
+              <div className="flex gap-2 min-w-0 overflow-x-auto scrollbar-hide">
                 {difficultyFilters.map((f) => (
                   <button
                     key={f}
                     onClick={() => setDifficulty(f)}
-                    className={`px-5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
+                    className={`px-4 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
                       difficulty === f
                         ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                        : "bg-muted/50 text-muted-foreground hover:text-foreground"
+                        : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
                     {f}
